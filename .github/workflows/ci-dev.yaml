@@ -34,7 +34,8 @@ jobs:
   deploy-dev:
     needs: test-and-verify # WAIT for tests to pass
     # Reference the central repo: owner/repo/path/filename@ref
-    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy.yaml@main
+    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy-cloudrun.yaml@main
+
     with:
       environment: development
       service_name: test-service

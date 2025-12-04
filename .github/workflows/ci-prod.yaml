@@ -20,7 +20,7 @@ jobs:
   deploy-prod:
     needs: verify-release # WAIT for verify release to pass
     # Reference the central repo: owner/repo/path/filename@ref
-    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy.yaml@main
+    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy-cloudrun.yaml@main
     with:
       environment: production
       service_name: test-service

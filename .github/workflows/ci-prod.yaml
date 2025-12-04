@@ -5,6 +5,9 @@ on:
   push:
     tags:
       - 'v*'
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   # JOB 1: Verification check logic will be added here right now optional for every developer

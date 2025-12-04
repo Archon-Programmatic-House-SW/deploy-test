@@ -5,6 +5,10 @@ on:
     branches:
       - develop
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   # JOB 1: Language Specific Testing
   # This runs LOCALLY in the runner. If this fails, Deployment is skipped.

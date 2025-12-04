@@ -5,13 +5,17 @@ on:
     branches:
       - develop
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   # JOB 1: Language Specific Testing
   # This runs LOCALLY in the runner. If this fails, Deployment is skipped.
 
   # This logic is owned by the App Team, every developer can add its own testing logic.
   # This allows Python teams to run pytest and Java teams to run Maven
-  # without changing the global infrastructure template.
+  # without changing the global infrastructure template
   
   test-and-verify:
     name: Unit Tests & Coverage
@@ -34,15 +38,17 @@ jobs:
   deploy-dev:
     needs: test-and-verify # WAIT for tests to pass
     # Reference the central repo: owner/repo/path/filename@ref
-    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy.yaml@main
+    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy-cloudrun.yaml@main
+
     with:
       environment: development
       service_name: test-service
-      project_id: archonunity-dev
+      project_id: archonunity-staging
       region: europe-west3
-      registry_name: archonunity-dev-repo
+      registry_name: archon-devops-test
+
       # Runtime service account 
-      runtime_service_account: "backend-runtime@archonunity-dev.iam.gserviceaccount.com"
+      runtime_service_account: "archonunity-backend@archonunity-staging.iam.gserviceaccount.com"
       # Dynamic Environment Variables needs to be configured by developer
       # env_vars: |
         # ENVIRONMENT=Development

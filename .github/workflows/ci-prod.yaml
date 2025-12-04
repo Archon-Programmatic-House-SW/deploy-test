@@ -5,6 +5,9 @@ on:
   push:
     tags:
       - 'v*'
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   # JOB 1: Verification check logic will be added here right now optional for every developer
@@ -20,15 +23,16 @@ jobs:
   deploy-prod:
     needs: verify-release # WAIT for verify release to pass
     # Reference the central repo: owner/repo/path/filename@ref
-    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy.yaml@main
+    uses: Archon-Programmatic-House-SW/devops-templates/.github/workflows/reusable-deploy-cloudrun.yaml@main
     with:
       environment: production
       service_name: test-service
-      project_id: archonunity-prod
+      project_id: archonunity-staging
       region: europe-west3
-      registry_name: archonunity-prod-repo
+      registry_name: archon-devops-test
+
       # Runtime service account 
-      runtime_service_account: "backend-runtime@archonunity-dev.iam.gserviceaccount.com"
+      runtime_service_account: "archonunity-backend@archonunity-staging.iam.gserviceaccount.com"
       # Dynamic Environment Variables needs to be configured by developer
       # env_vars: |
         # ENVIRONMENT=Development

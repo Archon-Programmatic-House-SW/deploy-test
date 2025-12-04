@@ -14,5 +14,5 @@ def health():
 
 
 if __name__ == "__main__":
-    # Development server for local test
+    # Development server for local tests
     app.run(host="0.0.0.0", port=8080, debug=True)

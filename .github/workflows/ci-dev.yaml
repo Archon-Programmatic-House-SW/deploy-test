@@ -15,7 +15,7 @@ jobs:
 
   # This logic is owned by the App Team, every developer can add its own testing logic.
   # This allows Python teams to run pytest and Java teams to run Maven
-  # without changing the global infrastructure template.
+  # without changing the global infrastructure template
   
   test-and-verify:
     name: Unit Tests & Coverage
